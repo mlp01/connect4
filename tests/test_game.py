@@ -14,13 +14,13 @@ GRID_DUMB_6 = """
 """
 
 
-class TestGame(unittest.TestCase):
+class TestModeles(unittest.TestCase):
     def test_grid_str(self):
         grid = Grid()
         grid.grid[0] = [Cell.A, Cell.B, Cell.A, Cell.B, Cell.A, Cell.B, Cell.EMPTY]
         self.assertEqual("\n" + str(grid), GRID_DUMB_6)
 
-    @unittest.skip
+    #@unittest.skip
     def test_dumb_6(self):
         from connect4.dumb_ia import DumbIA
 

@@ -8,5 +8,3 @@ class DumbIA(Player):
                 if grid.grid[line][column] == Cell.EMPTY :
                     return column    
         return grid.columns
-
-#tessssssst

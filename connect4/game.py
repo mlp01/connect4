@@ -42,10 +42,37 @@ class Grid:
                 if adjacent == 4:
                     return True
             else:
-                adjacent = 0
+               adjacent = 0
 
         # TODO: Vertical
+        adjacent = 0
+        for i in range(Grid.lines):
+            if self.grid[i][column] == color:
+                adjacent += 1
+                if adjacent == 4:
+                    return True
+            else:
+                adjacent = 0
+
         # TODO: Diagonal
+        adjacent = 0
+        col =column-line
+        lign=0
+        for col in range(Grid.lines):
+            if col>=0:
+                if self.grid[lign][col] == color:
+                    adjacent += 1
+                    if adjacent == 4:
+                        return True
+                else:
+                    adjacent = 0
+            lign+=1
+                
+
+            
+
+
+
         return False
 
     def tie(self):
@@ -86,4 +113,5 @@ class Game:
     def play(self, player: Player, cell: Cell) -> bool:
         column = player.play(self.grid)
         line = self.grid.place(column, cell)
+        print(self.grid)
         return self.grid.win(line, column)

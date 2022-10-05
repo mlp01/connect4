@@ -1,3 +1,7 @@
+# PINTO OLIVEIRA Rafael
+# POIRIER Jeremy
+# Github: mlp01
+
 import argparse
 
 from .game import Game, Player

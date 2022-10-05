@@ -1,4 +1,6 @@
 from enum import Enum
+import time
+import os
 
 
 class Cell(Enum):
@@ -66,10 +68,11 @@ class Grid:
 
         # TODO: Diagonal
         adjacent = 0
-        col =column-line
+        col =column-line #on initialise le numero de colonne tel que l'origine 
+        #de notre diagonale soit 0 en hauteur(ligne) 
         lign=0
         for col in range(Grid.lines):
-            if col>=0:
+            if col>=0: #tant qu'on est dans des cellules fictives on n'essaye pas de les placer
                 if self.grid[lign][col] == color:
                     adjacent += 1
                     if adjacent == 4:
@@ -77,18 +80,17 @@ class Grid:
                 else:
                     adjacent = 0
             lign+=1
-                
-
-            
-
-
 
         return False
 
     def tie(self) -> bool:
         """Check if the grid is full."""
-        # TODO
-        return False
+        col=0
+        for col in range(Grid.columns):
+            if self.grid[Grid.lines-1][col]== Cell.EMPTY:
+                return False
+        return True
+
 
 
 class Player:
@@ -132,9 +134,11 @@ class Game:
     def play(self, player: Player, cell: Cell) -> bool:
         """Process one turn for one player.
 
-        Ask the player  on which column they want to play, ask the grid on which line
+        Ask the player on which column they want to play, ask the grid on which line
         the token stops, and check if this was a winning move."""
         column = player.play(self.grid)
         line = self.grid.place(column, cell)
+        os.system("clear")
         print(self.grid)
+        time.sleep(0.75)
         return self.grid.win(line, column)

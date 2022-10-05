@@ -20,7 +20,6 @@ class TestModeles(unittest.TestCase):
         grid.grid[0] = [Cell.A, Cell.B, Cell.A, Cell.B, Cell.A, Cell.B, Cell.EMPTY]
         self.assertEqual("\n" + str(grid), GRID_DUMB_6)
 
-    #@unittest.skip
     def test_dumb_6(self):
         from connect4.dumb_ia import DumbIA
 
@@ -38,7 +37,8 @@ class TestModeles(unittest.TestCase):
         self.assertTrue(grid.win(0, 0))
         self.assertFalse(grid.win(0, 6))
 
-    
+    # Ajout d'un second test pour verifier que win marche seulement si on a
+    #  4 jetons alignes et non simplement 4 jetons
     def test_line_win2(self):
         grid = Grid()
         grid.grid[0] = [Cell.A, Cell.A, Cell.A, Cell.B, Cell.A, Cell.B, Cell.B]
@@ -60,22 +60,22 @@ class TestModeles(unittest.TestCase):
         for lig_col in range(4):
             grid.grid[lig_col][lig_col] = Cell.A
             grid.grid[lig_col][lig_col + 1] = Cell.B if lig_col == 0 else Cell.A
-        print(grid)
         self.assertTrue(grid.win(0, 0))
         self.assertFalse(grid.win(0, 1))
 
-    @unittest.skip
+   
     def test_tie(self):
-        from connect4.dumb_ia import DumbIA
+        # Creation d'une grille complete sans victoire pour tester la partie nulle
+        grid = Grid()
+        grid.grid[5] = [Cell.A, Cell.B, Cell.A, Cell.B, Cell.A, Cell.B, Cell.A]
+        grid.grid[4] = [Cell.A, Cell.B, Cell.A, Cell.B, Cell.A, Cell.B, Cell.A]
+        grid.grid[3] = [Cell.B, Cell.A, Cell.B, Cell.A, Cell.B, Cell.A, Cell.B]
+        grid.grid[2] = [Cell.B, Cell.A, Cell.B, Cell.A, Cell.B, Cell.A, Cell.B]
+        grid.grid[1] = [Cell.A, Cell.B, Cell.A, Cell.B, Cell.A, Cell.B, Cell.A]
+        grid.grid[0] = [Cell.A, Cell.B, Cell.A, Cell.B, Cell.A, Cell.B, Cell.A]
 
-        ai_a = DumbIA()
-        ai_b = DumbIA()
-        game = Game(ai_a, ai_b)
-        self.assertFalse(game.grid.tie())
-        for _ in range(21):
-            game.play(ai_a, Cell.A)
-            game.play(ai_b, Cell.B)
-        self.assertTrue(game.grid.tie())
+        self.assertTrue(grid.tie())
+    
 
 
 if __name__ == "__main__":

@@ -1,8 +1,10 @@
-from .game import Player
-from .game import Cell
+from .game import Player, Cell, Grid
+
 
 class DumbIA(Player):
-    def play(self, grid):    
+    """IA which play on the column of the first possible empty cell it finds."""
+
+    def play(self, grid: Grid) -> int:
         for line in range(grid.lines):
             for column in range(grid.columns):
                 if grid.grid[line][column] == Cell.EMPTY :

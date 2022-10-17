@@ -57,6 +57,8 @@ class Grid:
                adjacent = 0
 
         # TODO: Vertical
+        # On regarde pour chaque ligne et pour la colonne donnée, si il existe 4 cellules
+        # remplies par le même joueur l'une en dessous de l'autre.
         adjacent = 0
         for i in range(Grid.lines):
             if self.grid[i][column] == color:
@@ -67,13 +69,17 @@ class Grid:
                 adjacent = 0
 
         # TODO: Diagonal
+<<<<<<< HEAD
         #croissante
+=======
+        # Pour la diagonale, on test chaque diagonale de la grille.
+>>>>>>> ca1fc32f0d09c7310928c2601b298031ff2af300
         adjacent = 0
-        col =column-line #on initialise le numero de colonne tel que l'origine 
-        #de notre diagonale soit 0 en hauteur(ligne) 
+        col = column - line # On initialise l'indice de colonne tel que l'origine 
+        # de notre diagonale soit à 0 en hauteur (ligne). 
         lign=0
         for col in range(Grid.lines):
-            if col>=0: #tant qu'on est dans des cellules fictives on n'essaye pas de les placer
+            if col>=0: # tant qu'on est dans des cellules fictives on n'essaye pas de les placer
                 if self.grid[lign][col] == color:
                     adjacent += 1
                     if adjacent == 4:

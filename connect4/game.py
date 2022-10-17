@@ -67,6 +67,7 @@ class Grid:
                 adjacent = 0
 
         # TODO: Diagonal
+        #croissante
         adjacent = 0
         col =column-line #on initialise le numero de colonne tel que l'origine 
         #de notre diagonale soit 0 en hauteur(ligne) 
@@ -80,6 +81,24 @@ class Grid:
                 else:
                     adjacent = 0
             lign+=1
+
+        # Diagonal 
+        # décroissante
+        adjacent = 0
+        col = (column+line) #on initialise le numero de colonne tel que l'origine 
+        #de notre diagonale soit 0 en hauteur(ligne) 
+        lign=0
+        for col in range(col, -1, -1): # on se déplace maintenant de la droite vers la gauche
+            if col<=6 and lign<Grid.lines: #tant qu'on est dans des cellules fictives on n'essaye pas de les placer
+                if self.grid[lign][col] == color:
+                    adjacent += 1
+                    if adjacent == 4:
+                        return True
+                else:
+                    adjacent = 0
+            lign+=1
+            
+  
 
         return False
 

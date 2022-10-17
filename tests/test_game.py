@@ -39,12 +39,12 @@ class TestModeles(unittest.TestCase):
 
     # Ajout d'un second test pour verifier que win marche seulement si on a
     #  4 jetons alignes et non simplement 4 jetons
+
     def test_line_win2(self):
         grid = Grid()
         grid.grid[0] = [Cell.A, Cell.A, Cell.A, Cell.B, Cell.A, Cell.B, Cell.B]
         self.assertTrue(0==grid.win(0, 0))
         self.assertFalse(grid.win(0, 6))
-
 
     def test_column_win(self):
         grid = Grid()
@@ -54,8 +54,7 @@ class TestModeles(unittest.TestCase):
         self.assertTrue(grid.win(0, 0))
         self.assertFalse(grid.win(0, 1))
 
-    
-    def test_diag_win(self):
+    def test_diag_win1(self):
         grid = Grid()
         for lig_col in range(4):
             grid.grid[lig_col][lig_col] = Cell.A
@@ -63,7 +62,15 @@ class TestModeles(unittest.TestCase):
         self.assertTrue(grid.win(0, 0))
         self.assertFalse(grid.win(0, 1))
 
-   
+    # Ajout d'un test unitaire pour une diagonale décroissante
+    def test_diag_win2(self):
+        grid = Grid()
+        for lig_col in range(4):
+            grid.grid[3-lig_col][lig_col] = Cell.A
+            grid.grid[3-lig_col][lig_col + 1] = Cell.B if lig_col == 0 else Cell.A
+        self.assertTrue(grid.win(0, 3))
+        self.assertFalse(grid.win(0, 4))       
+
     def test_tie(self):
         # Creation d'une grille complete sans victoire pour tester la partie nulle
         grid = Grid()

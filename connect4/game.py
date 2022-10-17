@@ -69,11 +69,8 @@ class Grid:
                 adjacent = 0
 
         # TODO: Diagonal
-<<<<<<< HEAD
         #croissante
-=======
-        # Pour la diagonale, on test chaque diagonale de la grille.
->>>>>>> ca1fc32f0d09c7310928c2601b298031ff2af300
+
         adjacent = 0
         col = column - line # On initialise l'indice de colonne tel que l'origine 
         # de notre diagonale soit à 0 en hauteur (ligne). 
@@ -103,9 +100,6 @@ class Grid:
                 else:
                     adjacent = 0
             lign+=1
-            
-  
-
         return False
 
     def tie(self) -> bool:
